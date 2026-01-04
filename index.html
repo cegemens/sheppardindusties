@@ -315,13 +315,70 @@
             </div>
         </div>
     </section>
-    
-    <!-- Contact Section -->
+	
+	<!-- Email Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-primary dark:text-grey-300 mb-2 text-center">Get In Touch</h2>
+                <p class="text-gray-800 dark:text-gray-800 mb-8 text-center">Ready to get your firearm serviced? Contact us today!</p>
+                
+                <div class="bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-6">
+                    <form id="contactForm" action="https://formsubmit.co/ces@sheppardindustries.com" method="POST" class="space-y-6">
+					
+					<input type="hidden" name="_captcha" value="false">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                                <input type="text" id="name" name="name"class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800">
+                        </div>
+                        <div>
+                            <label for="Location" class="block text-gray-700 dark:text-gray-300 mb-2">Location Nearest to You</label>
+                            <select id="Location" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800">
+                                <option value="">Select Location</option>
+                                <option value="Yelm">LongShotIR, Yelm</option>
+                                <option value="Olympia">Private Sector Arms, Olympia</option>
+								<option value="Lacey">KP Gunworks, Lacey</option>
+								<option value="Centralia">East County Guns, Centralia</option>
+								<option value="Mail">Mail To FFL</option>
+								<option value="Other">Other, please type below</option>
+                            </select>
+                        </div>
+						
+                        <div>
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800"></textarea>
+                        </div>
+						
+                        <button type="submit" class="w-full bg-secondary hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition">Send Message</button>
+                    </form>
+                </div>
+				
+				<div id="thankYouPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+					<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+						<h3 class="text-xl font-bold mb-2 text-primary dark:text-white">Thank you!</h3>
+						<p class="text-gray-700 dark:text-gray-300">Your message has been sent.</p>
+						<button onclick="closePopup()" class="mt-4 bg-secondary text-white px-4 py-2 rounded-lg hover:bg-red-600"> Close</button>
+					</div>
+				</div>
+    </section>
+	
+    <!-- Contact INFO Section -->
     <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row">
                 <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">CONTACT US</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">CONTACT INFO</h2>
                     <div class="w-20 h-1 bg-secondary mb-6"></div>
                     <p class="mb-6">Ready to discuss your project? Contact us directly!</p>
                     
@@ -450,6 +507,29 @@
             </div>
         </div>
     </footer>
+	
+	<script>
+	document.getElementById("contactForm").addEventListener("submit", function(e) {
+		e.preventDefault(); // stop page reload
+
+		const form = e.target;
+
+		// Send form data to FormSubmit
+		fetch(form.action, {
+			method: "POST",
+			body: new FormData(form)
+		})
+		.then(() => {
+			document.getElementById("thankYouPopup").classList.remove("hidden");
+			form.reset();
+		})
+		.catch(() => alert("There was an error sending your message."));
+	});
+
+	function closePopup() {
+		document.getElementById("thankYouPopup").classList.add("hidden");
+	}
+	</script>
     
     <script>
         // Mobile menu toggle
